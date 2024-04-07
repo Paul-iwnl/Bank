@@ -61,4 +61,25 @@ public class LinkedList
             current = current.getNext();
         }
     }
+
+    public boolean login(String name, String password) 
+    {
+        Node current = head;
+        while (current != null) 
+        {
+            BankAccount account = current.getAccount();
+            if (account.getName().equals(name) && account.getPassword().equals(password)) 
+            {
+                System.out.println("_______________________________________");
+                System.out.println("Login successful! Welcome, " + name + "!");
+                System.out.println("_______________________________________");
+                return true;
+            }
+            current = current.getNext();
+        }
+        System.out.println("_______________________________________");
+        System.out.println("Login failed! Invalid username or password.");
+        System.out.println("_______________________________________");
+        return false;
+    }
 }

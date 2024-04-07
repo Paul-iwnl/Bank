@@ -43,12 +43,21 @@ public class BankAccount
         return accountId;
     }
 
+    public String getName()
+    {
+        return name;
+    }
+
+    public String getPassword()
+    {
+        return Password;
+    }
+
     public void accountInformation()
     {
         System.out.println("__________ACCOUNT INFORMATION__________");
         System.out.println("Name : "+name);
         System.out.println("Account ID :"+accountId);
-        System.out.println("Account Balance :"+balance);
         System.out.println("_______________________________________");
     }
     
