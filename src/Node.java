@@ -1,30 +1,35 @@
 public class Node 
 {
-    private BankAccount account;
-    private Node next;
-    
-    public Node (BankAccount account)
+    private BankAccount account; // BankAccount object stored in the node
+    private Node next; // Reference to the next node in the linked list
+
+    // Constructor to initialize a node with a BankAccount object
+    public Node(BankAccount account) 
     {
         this.account = account;
-        this.next = null;
+        this.next = null; // Initially, the next reference is set to null
     }
 
-    public BankAccount getAccount()
+    // Getter method to retrieve the BankAccount object stored in the node
+    public BankAccount getAccount() 
     {
         return account;
     }
 
-    public void setAccount (BankAccount account)
+    // Setter method to update the BankAccount object stored in the node
+    public void setAccount(BankAccount account) 
     {
         this.account = account;
     }
 
-    public Node getNext()
+    // Getter method to retrieve the reference to the next node
+    public Node getNext() 
     {
         return next;
     }
 
-    public void setNext(Node next)
+    // Setter method to update the reference to the next node
+    public void setNext(Node next) 
     {
         this.next = next;
     }
