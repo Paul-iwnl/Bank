@@ -7,6 +7,11 @@ public class LinkedList
         this.head = null;
     }
 
+    public Node getHead()
+    {
+        return head;
+    }
+
     public void addAccount(BankAccount account)
     {
         Node newNode = new Node(account);
@@ -82,4 +87,54 @@ public class LinkedList
         System.out.println("_______________________________________");
         return false;
     }
+
+    public double getCurrentAccountBalance(String name) 
+    {
+        Node current = head;
+        while (current != null) 
+        {
+            BankAccount account = current.getAccount();
+            if (account.getName().equals(name)) 
+            {
+                return account.checkBalance();
+            }
+            current = current.getNext();
+        }
+        System.out.println("_______________________________________");
+        System.out.println("Failed to retrieve balance. Account not found.");
+        System.out.println("_______________________________________");
+        return -1; // Return -1 if account not found
+    }
+
+    public void getCurrentAccountDeposit(String name, double deposit)
+    {
+        Node current = head;
+        while (current != null) 
+        {
+            BankAccount account = current.getAccount();
+            if(account.getName().equals(name))
+            {
+                account.deposit(deposit);
+                System.out.println("_______________________________________");
+                System.out.println(deposit+" has been deposited to your account.");
+                System.out.println("_______________________________________");
+            }
+            current = current.getNext();
+        }
+    }
+
+    public void getCurrentAccountWithdraw(String name, double withdraw)
+    {
+        Node current = head;
+        while(current != null)
+        {
+            BankAccount account = current.getAccount();
+            if(account.getName().equals(name))
+            {
+                account.withdraw(withdraw);
+            }
+            current = current.getNext();
+        }
+    }
+
 }

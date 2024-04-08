@@ -9,6 +9,7 @@ public class MainClass
 
         int choice,accountChoice;
         String name,password;
+        double balance,deposit,withdraw;
 
         do
         {
@@ -32,7 +33,7 @@ public class MainClass
                     System.out.println("Enter a password : ");
                     password = sc.nextLine();
                     System.out.println("Enter your Initial Deposit :");
-                    double balance = sc.nextDouble();
+                    balance = sc.nextDouble();
                     BankAccount newAccount = new BankAccount(name,password,balance);
                     accountList.addAccount(newAccount);
                     System.out.println("Account added successfully !");
@@ -49,7 +50,7 @@ public class MainClass
                     {
                         do
                         {
-                            System.out.println("__________WELCOME "+name+" __________");
+                            System.out.println("__________WELCOME "+name+"__________");
                             System.out.println("Press 1 : To Check Balance.");
                             System.out.println("Press 2 : To Deposit Money.");
                             System.out.println("Press 3 : To Withdraw Money.");
@@ -63,15 +64,26 @@ public class MainClass
                             switch (accountChoice) 
                             {
                                 case 1:
-                                    
+                                    balance = accountList.getCurrentAccountBalance(name);
+                                    if(balance != -1)
+                                    {
+                                        System.out.println("_______________________________________");
+                                        System.out.println("Your current balance is: " + balance);
+                                        System.out.println("_______________________________________");
+                                    }
                                     break;
-                                    
+
                                 case 2:
-
+                                    System.out.println("_______________________________________");
+                                    System.out.println("Enter the deposit amount : ");
+                                    deposit = sc.nextDouble();
+                                    accountList.getCurrentAccountDeposit(name, deposit);
                                     break;
-
                                 case 3:
-
+                                    System.out.println("_______________________________________");
+                                    System.out.println("Enter the withdraw amount : ");
+                                    withdraw = sc.nextDouble();
+                                    accountList.getCurrentAccountWithdraw(name, withdraw);
                                     break;
 
                                 case 4:

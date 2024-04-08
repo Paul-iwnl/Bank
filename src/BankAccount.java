@@ -19,11 +19,16 @@ public class BankAccount
     {
         if(amount > balance)
         {
+            System.out.println("_______________________________________");
             System.out.println("Insufficient Balance");
+            System.out.println("_______________________________________");
         }
         else
         {
             balance = balance - amount;
+            System.out.println("_______________________________________");
+            System.out.println(amount + " has been withdrawn from your account.");
+            System.out.println("_______________________________________");
         }
     }
 
