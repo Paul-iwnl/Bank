@@ -9,7 +9,8 @@ public class MainClass
 
         int choice,accountChoice;
         String name,password;
-        double balance,deposit,withdraw;
+        double balance,deposit,withdraw,transferFund;
+        long transferAccountId;
 
         do
         {
@@ -77,7 +78,18 @@ public class MainClass
                                     System.out.println("_______________________________________");
                                     System.out.println("Enter the deposit amount : ");
                                     deposit = sc.nextDouble();
-                                    accountList.getCurrentAccountDeposit(name, deposit);
+                                    if (accountList.getCurrentAccountDeposit(name, deposit))
+                                    {
+                                        System.out.println("_______________________________________");
+                                        System.out.println(deposit + " has been deposited to your account.");
+                                        System.out.println("_______________________________________");
+                                    }
+                                    else
+                                    {
+                                        System.out.println("_______________________________________");
+                                        System.out.println("Deposit failed");
+                                        System.out.println("_______________________________________");
+                                    }
                                     break;
                                 case 3:
                                     System.out.println("_______________________________________");
@@ -87,7 +99,23 @@ public class MainClass
                                     break;
 
                                 case 4:
-
+                                    System.out.println("_______________________________________");
+                                    System.out.println("Enter the Account ID You Want to Transfer the Money Into : ");
+                                    transferAccountId = sc.nextLong();
+                                    System.out.println("Enter the amount you want to transfer :");
+                                    transferFund = sc.nextDouble();
+                                    if(accountList.getTransferMoney(name,transferAccountId,transferFund))
+                                    {
+                                        System.out.println("_______________________________________");
+                                        System.out.println("Transfer Successfull !");
+                                        System.out.println("_______________________________________");
+                                    }
+                                    else
+                                    {
+                                        System.out.println("_______________________________________");
+                                        System.out.println("Transfer failed !");
+                                        System.out.println("_______________________________________");
+                                    }
                                     break;
 
                                 case 5:

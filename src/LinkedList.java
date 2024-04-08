@@ -106,7 +106,7 @@ public class LinkedList
         return -1; // Return -1 if account not found
     }
 
-    public void getCurrentAccountDeposit(String name, double deposit)
+    public boolean getCurrentAccountDeposit(String name, double deposit)
     {
         Node current = head;
         while (current != null) 
@@ -115,12 +115,11 @@ public class LinkedList
             if(account.getName().equals(name))
             {
                 account.deposit(deposit);
-                System.out.println("_______________________________________");
-                System.out.println(deposit+" has been deposited to your account.");
-                System.out.println("_______________________________________");
+                return true;
             }
             current = current.getNext();
         }
+        return false;
     }
 
     public void getCurrentAccountWithdraw(String name, double withdraw)
@@ -132,9 +131,34 @@ public class LinkedList
             if(account.getName().equals(name))
             {
                 account.withdraw(withdraw);
+                break;
             }
             current = current.getNext();
         }
+    }
+
+    public boolean getTransferMoney(String name,long transferAccountId,double transferFund)
+    {
+        double currentAccountBalance = getCurrentAccountBalance(name);
+        if(currentAccountBalance < transferFund)
+        {
+            return false;
+        }
+        
+        Node current = head;
+        while(current != null)
+        {
+            BankAccount account = current.getAccount();
+            if(account.getAccountId() == transferAccountId)
+            {
+                String transferAccountName = account.getName();
+                getCurrentAccountDeposit(transferAccountName, transferFund);
+                getCurrentAccountWithdraw(name, transferFund);
+                return true;
+            }
+            current = current.getNext();
+        }
+        return false;
     }
 
 }
