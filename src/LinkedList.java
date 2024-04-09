@@ -125,7 +125,7 @@ public class LinkedList
     }
 
     // Method to deposit funds into an account
-    public boolean getCurrentAccountDeposit(String name, double deposit) 
+    public boolean getCurrentAccountDeposit(String name, double depositAmount) 
     {
         Node current = head;
         // Traverse the list to find the account with the specified username
@@ -134,7 +134,9 @@ public class LinkedList
             BankAccount account = current.getAccount();
             if (account.getName().equals(name)) 
             {
-                account.deposit(deposit);
+                account.deposit(depositAmount);
+                Transaction depositTransaction = new Transaction(depositAmount, "Deposit");
+                account.getTransactionHistory().add(depositTransaction);
                 return true;
             }
             current = current.getNext();
@@ -153,6 +155,8 @@ public class LinkedList
             if (account.getName().equals(name)) 
             {
                 account.withdraw(withdraw);
+                Transaction withdrawal = new Transaction(withdraw, "Withdrawal");
+                account.getTransactionHistory().add(withdrawal);
                 break;
             }
             current = current.getNext();
@@ -186,5 +190,21 @@ public class LinkedList
             current = current.getNext();
         }
         return false;
+    }
+
+    public void displayTransactionHistory(String name) 
+    {
+        Node current = head;
+        while (current != null) {
+            BankAccount account = current.getAccount();
+            if (account.getName().equals(name)) {
+                account.displayTransactionHistory();
+                return;
+            }
+            current = current.getNext();
+        }
+        System.out.println("_______________________________________");
+        System.out.println("Account not found.");
+        System.out.println("_______________________________________");
     }
 }

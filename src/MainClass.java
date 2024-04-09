@@ -131,7 +131,8 @@ public class MainClass
                                     break;
 
                                 case 5:
-                                    // View transaction history (not implemented)
+                                    // View transaction history 
+                                    accountList.displayTransactionHistory(name);
                                     break;
 
                                 case 6:

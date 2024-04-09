@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class BankAccount 
@@ -7,6 +9,7 @@ public class BankAccount
     private String name;
     private double balance;
     private String Password;
+    private List<Transaction> transactionHistory;
 
     // Constructor to initialize account details
     public BankAccount(String name, String Password, double balance) 
@@ -16,6 +19,7 @@ public class BankAccount
         this.name = name;
         this.Password = Password;
         this.balance = balance;
+        this.transactionHistory = new ArrayList<>();
     }
 
     // Method to withdraw money from the account
@@ -32,6 +36,8 @@ public class BankAccount
         {
             // Deduct the withdrawal amount from the balance
             balance = balance - amount;
+            Transaction withdrawal = new Transaction(amount,"withdrawal");
+            transactionHistory.add(withdrawal);
             // Display withdrawal confirmation message
             System.out.println("_______________________________________");
             System.out.println(amount + " has been withdrawn from your account.");
@@ -44,6 +50,8 @@ public class BankAccount
     {
         // Add the deposited amount to the balance
         balance = balance + amount;
+        Transaction deposit = new Transaction(amount, "Deposit");
+        transactionHistory.add(deposit);
     }
 
     // Method to check the current balance of the account
@@ -85,5 +93,21 @@ public class BankAccount
     {
         long generatedcode = ThreadLocalRandom.current().nextInt(100000, 1000000);
         return generatedcode;
+    }
+
+    public void displayTransactionHistory()
+    {
+        System.out.println("_______________________________________");  
+        System.out.println("Transcation History for "+name+" : ");
+        for(Transaction transaction : transactionHistory)
+        {
+            System.out.println(transaction.getType() + ": $"+ transaction.getAmount());
+        }
+        System.out.println("_______________________________________");
+    }
+
+    public List<Transaction> getTransactionHistory() 
+    {
+        return transactionHistory;
     }
 }
